@@ -2,7 +2,7 @@ const express = require("express");
 const mysql = require("mysql");
 const app = express();
 
-const connection =   mysql.createConnection({
+var dataConnectionCredentials = ({
   "host": "us-cdbr-east-05.cleardb.net",
   "user": "bffcfd0a0c6b1e",
   "database": "heroku_8d4f798c6cce060",
@@ -10,14 +10,32 @@ const connection =   mysql.createConnection({
   "password": "27a4bb67"
 });
 
-connection.connect(function(err,res){
- if (err){
-   console.log(err)
- }
- else{
-   console.log("Succesfully connected");
- }
-})
+/* This handles the error when the database connection is lost */
+function handleDisconnect() {
+  connection = mysql.createConnection(dataConnectionCredentials); //Creating and recreating the connection when the connection is lost or
+  connection.connect(function (err) {
+    // The server is either down
+    if (err) {
+      //  or restarting (takes a while sometimes).
+      console.log("error when connecting to db:", err);
+      setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect and solve the issue.
+    } else {
+      console.log("Database connected successfully"); //This lines shows if the database is connected successfully.
+    }
+  });
+  connection.on("error", function (err) {
+    console.log("db error", err);
+    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+      // If it gets the following error(when connection is lost), then
+      handleDisconnect(); // We will call the function and restart the connection again.
+    } else {
+      // Otherwise throw the error and then again the call the function.
+      throw err; // Handles error
+    }
+  });
+}
+handleDisconnect();  
+
 
 
 app.set("view engine","ejs");
