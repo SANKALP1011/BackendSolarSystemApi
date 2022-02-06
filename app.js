@@ -3,11 +3,11 @@ const mysql = require("mysql");
 const app = express();
 
 const connection =   mysql.createConnection({
-  "host": "127.0.0.1",
-  "user": "root",
-  "database": "SolarApi",
+  "host": "us-cdbr-east-05.cleardb.net",
+  "user": "bffcfd0a0c6b1e",
+  "database": "heroku_8d4f798c6cce060",
   "port": "3306",
-  "password": "happybarca1011"
+  "password": "27a4bb67"
 });
 
 connection.connect(function(err,res){
