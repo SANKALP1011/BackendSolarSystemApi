@@ -1,0 +1,26 @@
+{
+  "name": "solarsystemapi",
+  "version": "1.0.0",
+  "description": "This is the json file for the solar system api.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SANKALP1011/SolarSystemApi.git"
+  },
+  "author": "Sankalp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SANKALP1011/SolarSystemApi/issues"
+  },
+  "homepage": "https://github.com/SANKALP1011/SolarSystemApi#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.15"
+  }
+}
