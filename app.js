@@ -36,14 +36,9 @@ function handleDisconnect() {
 }
 handleDisconnect();  
 
-
-
 app.set("view engine","ejs");
 
-
-
-
-
+//Get route is tested using postman and it's working properly.
 app.get("/",function(req,res){
   var data = "select* from Planets";
   connection.query(data,function(err,result){
