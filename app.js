@@ -67,7 +67,24 @@ app.get("/:Name",function(req,res){
     }
   })
 
-})
+});
+
+app.get("/:About",function(req,res){
+
+  var about = req.params.About;
+  var query = "select* from Planets where About = ?";
+  connection.query(query,[about],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+    res.send(result);
+    }
+  })
+
+});
+
+
 
 app.listen(process.env.PORT || "3000",function(){
     console.log("Server is up and running")
