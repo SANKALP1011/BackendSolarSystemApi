@@ -5,6 +5,10 @@
 # Live
 - https://solarapii.herokuapp.com/#
 
+# Routes
+- Get(/:Name)
+- Get(/:About)
+
 # Backend
 - Node , express .
 
@@ -13,3 +17,6 @@
 
 # Deployement
 - Heroku
+
+# Test
+- Postman
