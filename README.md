@@ -8,6 +8,7 @@
 # Routes
 - Get(/:Name)
 - Get(/:About)
+- Post(/:About)
 
 # Backend
 - Node , express .
