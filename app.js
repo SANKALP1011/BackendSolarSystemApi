@@ -84,6 +84,19 @@ app.get("/:About",function(req,res){
 
 });
 
+app.post("/:Name",function(req,res){
+  var name = req.params.Name;
+  var query = "select* from Planets where Name = ?";
+  connection.query(query,[name],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send(result);
+    }
+  })
+})
+
 
 
 app.listen(process.env.PORT || "3000",function(){
