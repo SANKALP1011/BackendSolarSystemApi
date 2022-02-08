@@ -1,5 +1,7 @@
+const e = require("express");
 const express = require("express");
 const mysql = require("mysql");
+const Connection = require("mysql/lib/Connection");
 const app = express();
 
 var dataConnectionCredentials = ({
@@ -38,7 +40,7 @@ handleDisconnect();
 
 app.set("view engine","ejs");
 
-//Get route is tested using postman and it's working properly.
+//Get route is tested using postman and it's working properly..    
 app.get("/",function(req,res){
   var data = "select* from Planets";
   connection.query(data,function(err,result){
@@ -51,6 +53,21 @@ app.get("/",function(req,res){
       }
   })
 });
+
+app.get("/:Name",function(req,res){
+  var name = req.params.Name;
+  console.log(name)
+  var query = "select* from Planets where Name = ?";
+  connection.query(query,[name],function(err,result){
+    if (err){
+      console.log(err)
+    }
+    else{
+      res.send(result);
+    }
+  })
+
+})
 
 app.listen(process.env.PORT || "3000",function(){
     console.log("Server is up and running")
